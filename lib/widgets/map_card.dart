@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/pages/map_page.dart';
+import 'package:standoff_grenader/pages/map_page.dart' show MapPage;
+import 'package:standoff_grenader/config.dart' show CMap;
 
 class MapCard extends StatelessWidget {
-  const MapCard({super.key});
+  final CMap map;
+
+  const MapCard(this.map, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +15,12 @@ class MapCard extends StatelessWidget {
         onTap: () {
           Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (context) => MapPage()));
+          ).push(MaterialPageRoute(builder: (context) => MapPage(map)));
         },
-        child: Padding(padding: .all(15), child: Text('test')),
+        child: Container(
+          decoration: BoxDecoration(image: DecorationImage(image: map.cover)),
+          child: Padding(padding: .all(15), child: Text(map.name)),
+        ),
       ),
     );
   }

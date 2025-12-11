@@ -1,0 +1,16 @@
+{
+  "maps": [
+    {
+      "name": "Sandstone",
+      "image": "",
+      "cover": "",
+      "grenades": [
+        {
+          "name": "test",
+          "side": "ct",
+          "position": [80, 30]
+        }
+      ]
+    }
+  ]
+}

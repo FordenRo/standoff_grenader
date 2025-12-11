@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/widgets/map_card.dart';
+import 'package:standoff_grenader/widgets/map_card.dart' show MapCard;
+import 'package:standoff_grenader/config.dart' show CMap;
 
 class MapListPage extends StatelessWidget {
-  const MapListPage({super.key});
+  final List<CMap> maps;
+
+  const MapListPage({super.key, required this.maps});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class MapListPage extends StatelessWidget {
         child: Column(
           spacing: 5,
           crossAxisAlignment: .stretch,
-          children: List.filled(5, MapCard()),
+          children: maps.map(MapCard.new).toList(growable: false),
         ),
       ),
     );
