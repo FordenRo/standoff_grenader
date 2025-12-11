@@ -1,0 +1,14 @@
+{
+  "Maps": [
+    {
+      "Name": "Sandstone",
+      "Image": "",
+      "Grenades": [
+        {
+          "Side": "CT",
+          "Position": [0, 0]
+        }
+      ]
+    }
+  ]
+}
