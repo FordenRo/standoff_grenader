@@ -24,3 +24,6 @@ flutter:
 
   assets:
     - config.json
+    - images/cover/
+    - images/map/
+    - images/grenade/

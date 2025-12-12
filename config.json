@@ -2,13 +2,46 @@
   "maps": [
     {
       "name": "Sandstone",
-      "image": "",
-      "cover": "",
       "grenades": [
         {
-          "name": "test",
-          "side": "ct",
-          "position": [80, 30]
+          "type": "flash",
+          "position": [30, 30],
+          "origins": [
+            {
+              "side": "ct",
+              "position": [30, 100]
+            }
+          ]
+        },
+        {
+          "type": "he",
+          "position": [60, 30],
+          "origins": [
+            {
+              "side": "ct",
+              "position": [30, 100]
+            }
+          ]
+        },
+        {
+          "type": "smoke",
+          "position": [90, 30],
+          "origins": [
+            {
+              "side": "ct",
+              "position": [30, 100]
+            }
+          ]
+        },
+        {
+          "type": "fire",
+          "position": [120, 30],
+          "origins": [
+            {
+              "side": "ct",
+              "position": [30, 100]
+            }
+          ]
         }
       ]
     }

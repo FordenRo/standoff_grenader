@@ -12,25 +12,47 @@ class Point {
 
 enum Side { counterTerrorist, terrorist, both }
 
+enum GrenadeType { smoke, he, fire, flash }
+
+enum ThrowType { stand, jump }
+
+class GrenadeOrigin {
+  final Point position;
+  final Side side;
+
+  const GrenadeOrigin(this.position, {required this.side});
+
+  GrenadeOrigin.fromJson(dynamic data)
+    : position = Point(data['position'][0], data['position'][1]),
+      side =
+          .values.asNameMap()[(data['side'] as String).toLowerCase()] ?? .both;
+}
+
 class Grenade {
   final Point position;
-  final String name;
-  final Side side;
+  final GrenadeType type;
+  final ThrowType throwType;
+  final List<GrenadeOrigin> origins;
 
   const Grenade({
     required this.position,
-    required this.name,
-    required this.side,
+    required this.type,
+    required this.origins,
+    required this.throwType,
   });
 
   Grenade.fromJson(dynamic data)
-    : name = data['name'],
-      position = Point(data['position'][0], data['position'][1]),
-      side = switch ((data['side'] as String).toLowerCase()) {
-        'ct' => .counterTerrorist,
-        't' => .terrorist,
-        _ => .both,
-      };
+    : position = Point(data['position'][0], data['position'][1]),
+      type = .values.asNameMap()[(data['type'] as String).toLowerCase()]!,
+      throwType =
+          .values.asNameMap()[(data['throw'] as String?)?.toLowerCase()] ??
+          .stand,
+      origins = (data['origins'] as List)
+          .map(GrenadeOrigin.fromJson)
+          .toList(growable: false);
+
+  Side get side =>
+      origins.any((e) => e.side == .both) ? .both : origins.first.side;
 }
 
 class CMap {
@@ -47,8 +69,12 @@ class CMap {
   });
 
   CMap.fromJson(dynamic data)
-    : image = AssetImage(data['image']),
-      cover = AssetImage(data['cover']),
+    : image = AssetImage(
+        'images/map/${data['image'] ?? '${data['name']}.png'}',
+      ),
+      cover = AssetImage(
+        'images/cover/${data['image'] ?? '${data['name']}.png'}',
+      ),
       name = data['name'],
       grenades = (data['grenades'] as List)
           .map(Grenade.fromJson)
@@ -64,8 +90,5 @@ class Config {
     : maps = (data['maps'] as List).map(CMap.fromJson).toList(growable: false);
 }
 
-Future<Config> loadConfig() async {
-  return Config.fromJson(
-    jsonDecode(await rootBundle.loadString('config.json')),
-  );
-}
+Future<Config> loadConfig() async =>
+    .fromJson(jsonDecode(await rootBundle.loadString('config.json')));
