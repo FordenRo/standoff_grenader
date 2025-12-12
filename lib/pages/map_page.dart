@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:standoff_grenader/config.dart' show CMap, Grenade;
 import 'package:standoff_grenader/widgets/grenade.dart'
     show GrenadeOriginWidget, GrenadeWidget;
+import 'package:standoff_grenader/widgets/grenade_info.dart'
+    show GrenadeInfoSheet;
 
 class MapPage extends StatefulWidget {
   final CMap map;
@@ -39,7 +41,7 @@ class _MapPageState extends State<MapPage> {
                 onPressed: () {
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => Container(height: 200),
+                    builder: (context) => GrenadeInfoSheet(selectedGrenade!, e),
                   );
                 },
               ),

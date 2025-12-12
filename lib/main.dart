@@ -21,11 +21,10 @@ class MyApp extends StatelessWidget {
           return MapListPage(maps: snapshot.requireData.maps);
         } else if (snapshot.hasError) {
           // TODO: Error page
-          return Text('Error');
-        } else {
-          // TODO: Make it look good
-          return CircularProgressIndicator();
+          return Text('Error: ${snapshot.error}');
         }
+        // TODO: Make it look good
+        return const CircularProgressIndicator();
       },
     ),
   );
