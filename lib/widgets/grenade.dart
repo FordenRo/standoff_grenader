@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/config.dart'
+import 'package:standoff_grenader/database.dart'
     show Grenade, GrenadeOrigin, Point;
 
 const double size = 16;

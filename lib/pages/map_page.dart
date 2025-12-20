@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/config.dart' show CMap, Grenade;
+import 'package:standoff_grenader/database.dart' show CMap, Grenade;
 import 'package:standoff_grenader/widgets/grenade.dart'
     show GrenadeOriginWidget, GrenadeWidget;
 import 'package:standoff_grenader/widgets/grenade_info.dart'
@@ -55,27 +55,32 @@ class _MapPageState extends State<MapPage> {
         title: Text(widget.map.name),
         backgroundColor: colorScheme.surfaceContainer,
       ),
-      body: InteractiveViewer(
-        maxScale: 4,
-        child: GestureDetector(
-          onTapDown: (details) {
-            print(details.localPosition);
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(image: widget.map.image),
-            ),
-            child: PopScope(
-              canPop: selectedGrenade == null,
-              onPopInvokedWithResult: (didPop, result) {
-                if (!didPop) {
-                  setState(() => selectedGrenade = null);
-                }
-              },
-              child: Stack(children: children),
-            ),
-          ),
-        ),
+      body: FutureBuilder(
+        future: widget.map.image.image,
+        builder: (context, snapshot) => snapshot.hasData
+            ? InteractiveViewer(
+                maxScale: 4,
+                child: GestureDetector(
+                  onTapDown: (details) {
+                    print(details.localPosition);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(image: snapshot.requireData),
+                    ),
+                    child: PopScope(
+                      canPop: selectedGrenade == null,
+                      onPopInvokedWithResult: (didPop, result) {
+                        if (!didPop) {
+                          setState(() => selectedGrenade = null);
+                        }
+                      },
+                      child: Stack(children: children),
+                    ),
+                  ),
+                ),
+              )
+            : Center(child: CircularProgressIndicator()),
       ),
     );
   }

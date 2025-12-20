@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/config.dart' show Grenade, GrenadeOrigin;
+import 'package:standoff_grenader/database.dart' show Grenade, GrenadeOrigin;
 
 class GrenadeInfoSheet extends StatelessWidget {
   final GrenadeOrigin origin;

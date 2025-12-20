@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standoff_grenader/widgets/map_card.dart' show MapCard;
-import 'package:standoff_grenader/config.dart' show CMap;
+import 'package:standoff_grenader/database.dart' show CMap;
 
 class MapListPage extends StatelessWidget {
   final List<CMap> maps;

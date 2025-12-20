@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/config.dart' show loadConfig;
+import 'package:standoff_grenader/database.dart' show Database, loadDatabase;
 import 'package:standoff_grenader/pages/map_list_page.dart' show MapListPage;
+
+late Database database;
 
 void main() => runApp(const MyApp());
 
@@ -15,9 +17,11 @@ class MyApp extends StatelessWidget {
       useMaterial3: true,
     ),
     home: FutureBuilder(
-      future: loadConfig(),
+      future: loadDatabase(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          database = snapshot.requireData;
+
           return MapListPage(maps: snapshot.requireData.maps);
         } else if (snapshot.hasError) {
           // TODO: Error page
