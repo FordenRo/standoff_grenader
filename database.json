@@ -2,6 +2,8 @@
   "maps": [
     {
       "name": "Sandstone",
+      "image": "map/Sandstone.png",
+      "cover": "cover/Sandstone.png",
       "grenades": [
         {
           "type": "flash",
