@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/database.dart' show CMap, Grenade;
-import 'package:standoff_grenader/widgets/grenade.dart'
-    show GrenadeOriginWidget, GrenadeWidget;
-import 'package:standoff_grenader/widgets/grenade_info.dart'
-    show GrenadeInfoSheet;
+import '../database.dart';
+import '../widgets/grenade.dart';
+import '../widgets/grenade_info.dart';
 
 class MapPage extends StatefulWidget {
   final CMap map;
@@ -21,7 +19,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    final List<Widget> children = .of(
+    final children = List<Widget>.of(
       (selectedGrenade == null ? widget.map.grenades : [selectedGrenade!]).map(
         (e) => GrenadeWidget(
           e,

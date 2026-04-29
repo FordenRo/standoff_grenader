@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:standoff_grenader/database.dart' show Database, loadDatabase;
-import 'package:standoff_grenader/pages/map_list_page.dart' show MapListPage;
+import 'database.dart';
+import 'pages/map_list_page.dart';
 
 late Database database;
 
