@@ -42,22 +42,6 @@ class _MapPageState extends State<MapPage> {
     _toCenter();
   }
 
-  void _toCenter() => Future.microtask(() {
-    final context = this.context;
-    if (!context.mounted) return;
-
-    final scale = min(context.size!.width, context.size!.height) / 1000;
-    controller.value = .compose(
-      Vector3(
-        -500 * scale + context.size!.width / 2,
-        -500 * scale + context.size!.height / 2,
-        0,
-      ),
-      .identity(),
-      .all(scale),
-    );
-  });
-
   @override
   void dispose() {
     scaleSub.cancel();
@@ -65,6 +49,22 @@ class _MapPageState extends State<MapPage> {
     scaleBroadcast.close();
     super.dispose();
   }
+
+  void _toCenter() => Future.microtask(() {
+    final context = this.context;
+    if (!context.mounted) return;
+
+    final scale = min(context.size!.width, context.size!.height) / 1000;
+    controller.value = .compose(
+      Vector3(
+        (context.size!.width - 1000 * scale) / 2,
+        (context.size!.height - 1000 * scale) / 2,
+        0,
+      ),
+      .identity(),
+      .all(scale),
+    );
+  });
 
   void _onGrenadePressed(Grenade grenade) => setState(
     () => selectedGrenade = selectedGrenade != grenade ? grenade : null,
@@ -180,12 +180,13 @@ class _MapPageState extends State<MapPage> {
             constrained: false,
             minScale: 0.1,
             maxScale: 4,
+            scaleFactor: 500,
             transformationController: controller,
             child: PopScope(
               canPop: selectedGrenade == null,
               onPopInvokedWithResult: (didPop, result) {
                 if (didPop) return;
-                setState(() => selectedGrenade == null);
+                setState(() => selectedGrenade = null);
               },
               child: FittedBox(
                 child: LayoutBuilder(
