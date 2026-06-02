@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
+
+import '../core/models/map_model.dart';
 import '../widgets/map_card.dart';
-import '../database.dart';
 
 class MapListPage extends StatelessWidget {
-  final List<CMap> maps;
+  const MapListPage({required this.maps, super.key});
 
-  const MapListPage({super.key, required this.maps});
+  final List<MapModel> maps;
 
   @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Standoff Grenader'),
-        backgroundColor: colorScheme.surfaceContainer,
+  Widget build(BuildContext context) => Scaffold(
+    body: GridView.builder(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+        mainAxisExtent: 140,
       ),
-      body: SingleChildScrollView(
-        padding: .all(10),
-        child: Column(
-          spacing: 5,
-          crossAxisAlignment: .stretch,
-          children: maps.map(MapCard.new).toList(growable: false),
-        ),
-      ),
-    );
-  }
+      itemCount: maps.length,
+      itemBuilder: (context, index) => MapCard(maps[index]),
+      padding: const .all(10),
+    ),
+  );
 }

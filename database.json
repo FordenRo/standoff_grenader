@@ -48,6 +48,74 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Dune",
+      "image": "map/Dune.png",
+      "cover": "cover/Dune.png",
+      "grenades": [
+        {
+          "type": "he",
+          "position": [740, 700],
+          "origins": [
+            {
+              "images": ["extras/dune/1/origin.png", "extras/dune/1/dir.png"],
+              "side": "t",
+              "position": [985, 530]
+            },
+            {
+              "images": ["extras/dune/3/origin.png", "extras/dune/3/dir.png"],
+              "side": "t",
+              "position": [785, 425]
+            }
+          ]
+        },
+        {
+          "type": "fire",
+          "position": [40, 780],
+          "origins": [
+            {
+              "images": [
+                "extras/dune/2/origin.png",
+                "extras/dune/2/dir.png",
+                "extras/dune/2/result.png"
+              ],
+              "side": "ct",
+              "position": [250, 820]
+            }
+          ]
+        },
+        {
+          "type": "smoke",
+          "position": [400, 660],
+          "origins": [
+            {
+              "images": [
+                "extras/dune/4/origin.png",
+                "extras/dune/4/dir.png",
+                "extras/dune/4/result.png"
+              ],
+              "side": "t",
+              "position": [440, 70]
+            }
+          ]
+        },
+        {
+          "type": "smoke",
+          "position": [455, 600],
+          "origins": [
+            {
+              "images": [
+                "extras/dune/5/origin.png",
+                "extras/dune/5/dir.png",
+                "extras/dune/5/result.png"
+              ],
+              "side": "t",
+              "position": [120, 345]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
