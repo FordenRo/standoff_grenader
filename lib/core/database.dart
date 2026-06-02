@@ -64,11 +64,21 @@ class Database {
         .map(MapModel.fromMap)
         .toList();
 
+    final extras = <String>[];
+    for (final map in maps) {
+      for (final grenade in map.grenades) {
+        for (final origin in grenade.origins) {
+          extras.addAll(origin.images.map((e) => e.path));
+        }
+      }
+    }
+
     if (hasUpdate) {
       await Future.wait([
         file.writeAsString(content),
         ...maps.map((e) => _createAndWrite(e.image.path)),
         ...maps.map((e) => _createAndWrite(e.cover.path)),
+        ...extras.map(_createAndWrite),
       ]);
     }
 

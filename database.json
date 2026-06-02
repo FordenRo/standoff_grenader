@@ -1,55 +1,6 @@
 {
   "maps": [
     {
-      "name": "Sandstone",
-      "image": "map/Sandstone.png",
-      "cover": "cover/Sandstone.png",
-      "grenades": [
-        {
-          "type": "flash",
-          "position": [30, 30],
-          "image": "grenade/sandstone/b_box/image.png",
-          "origins": [
-            {
-              "side": "ct",
-              "position": [30, 100],
-              "images": ["grenade/sandstone/b_box/origins/1/1.png"]
-            }
-          ]
-        },
-        {
-          "type": "he",
-          "position": [60, 30],
-          "origins": [
-            {
-              "side": "ct",
-              "position": [30, 100]
-            }
-          ]
-        },
-        {
-          "type": "smoke",
-          "position": [90, 30],
-          "origins": [
-            {
-              "side": "ct",
-              "position": [30, 100]
-            }
-          ]
-        },
-        {
-          "type": "fire",
-          "position": [120, 30],
-          "origins": [
-            {
-              "side": "ct",
-              "position": [30, 100]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "Dune",
       "image": "map/Dune.png",
       "cover": "cover/Dune.png",
